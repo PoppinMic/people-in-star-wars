@@ -7,13 +7,14 @@
     "@types/node": "11.9.5",
     "@types/react": "16.8.4",
     "@types/react-dom": "16.8.2",
+    "@types/react-redux": "^7.0.1",
+    "@types/redux-immutable": "^4.0.1",
     "axios": "^0.18.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.9.1",
     "immutable": "^4.0.0-rc.12",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-redux": "^6.0.1",
     "react-scripts": "2.1.5",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.1",
@@ -33,5 +34,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.8"
+  }
 }
