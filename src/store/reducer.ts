@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux-immutable';
-
-const reducer = combineReducers({});
+const reducer = () => null;
 
 export default reducer;
