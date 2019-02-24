@@ -1,0 +1,1 @@
+export const FETCH_PEOPLE_LIST = "fetch_people_list";
