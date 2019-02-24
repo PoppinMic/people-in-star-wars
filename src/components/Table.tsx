@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+
 import TableRow from './TableRow';
 
 import { IPayload } from '../interfaces';
@@ -61,4 +63,15 @@ class Table extends PureComponent<ITableProps, ITableState> {
   }
 }
 
-export default Table;
+const mapStateToProps = (state: ITableState) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Table);
