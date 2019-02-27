@@ -11,3 +11,6 @@ export const REQ_PEOPLE_FAIL = 'request_people_fail';
 export const REQ_FILMs = 'request_films';
 export const RES_FILMS = 'response_films';
 export const REQ_FILMS_FAIL = 'request_films_fail';
+
+// const for Saga
+export const PAGE_CHANGE = 'page_change';

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import Table from './components/Table';
+import Pagination from './components/Pagination';
 
 class App extends Component {
   render() {
@@ -12,8 +13,10 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <h1>People In Star Wars</h1>
-            <Table />
           </header>
+          <main>
+            <Table />
+          </main>
         </div>
       </Provider>
     );
