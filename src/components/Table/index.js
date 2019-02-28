@@ -16,7 +16,9 @@ class Table extends Component {
   }
   render() {
     const { isLoaded, payload } = this.props;
+    // !Console
     console.log(payload);
+    // !End of Console
     return (
       <React.Fragment>
         <table>

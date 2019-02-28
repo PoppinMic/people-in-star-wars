@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { requestPeople } from '../../actions';
+import { nextPage, prevPage } from '../../actions';
 
-const Pagination = ({ pageNum, totalPage }) => (
+const Pagination = ({ pageNum, totalPage, getNextPage, getPrevPage }) => (
   <div className="pagination">
-    <button>Prev</button>{' '}
+    <button onClick={getPrevPage}>Prev</button>{' '}
     <span>
-      {pageNum} / {totalPage}
+      {pageNum} / {Math.ceil(totalPage / 10)}
     </span>{' '}
-    <button>Next</button>
+    <button onClick={getNextPage}>Next</button>
   </div>
 );
 
@@ -18,7 +18,8 @@ const mapStateToProps = ({ pageNum }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  requestPeople: () => dispatch(requestPeople())
+  getNextPage: () => dispatch(nextPage),
+  getPrevPage: () => dispatch(prevPage)
 });
 
 export default connect(

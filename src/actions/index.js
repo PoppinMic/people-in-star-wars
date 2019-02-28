@@ -6,7 +6,7 @@ import {
   RES_FILMS,
   REQ_FILMS_FAIL,
   NEXT_PAGE,
-  PREV_PAGE,
+  PREV_PAGE
 } from './actionTypes';
 
 // People Actions
@@ -14,11 +14,11 @@ export const requestPeople = () => ({
   type: REQ_PEOPLE
 });
 
-export const responsePeople = (pageNum, payload) => ({
-  type: RES_PEOPLE,
-  pageNum,
-  payload
-});
+// export const responsePeople = (pageNum, payload) => ({
+//   type: RES_PEOPLE,
+//   pageNum,
+//   payload
+// });
 
 export const requestPeopleFail = error => ({
   type: REQ_PEOPLE_FAIL,
@@ -41,12 +41,10 @@ export const requestFilmsFail = error => ({
 });
 
 // Pagination
-export const nextPage = pageNum => ({
-  type: NEXT_PAGE,
-  pageNum
-});
+export const nextPage = {
+  type: NEXT_PAGE
+};
 
-export const prevPage = pageNum => ({
-  type: PREV_PAGE,
-  pageNum
-});
+export const prevPage = {
+  type: PREV_PAGE
+};
