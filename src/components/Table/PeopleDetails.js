@@ -3,24 +3,24 @@ import React from 'react';
 const PeopleDetails = ({ name, height, birthY, gender, films }) => (
   <div>
     <h2>People Details</h2>
-    <p>
+    <div>
       <h3>Name:</h3> {name}
-    </p>
-    <p>
+    </div>
+    <div>
       <h3>height:</h3> {height}
-    </p>
-    <p>
+    </div>
+    <div>
       <h3>Birth Year:</h3> {birthY}
-    </p>
-    <p>
+    </div>
+    <div>
       <h3>Gender:</h3> {gender}
-    </p>
-    <p>
+    </div>
+    <div>
       <h3>Films appeared:</h3>{' '}
       {films.map(film => (
-        <div>{film}</div>
+        <div key={film}>{film}</div>
       ))}
-    </p>
+    </div>
   </div>
 );
 
