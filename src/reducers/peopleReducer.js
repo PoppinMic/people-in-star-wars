@@ -1,4 +1,4 @@
-import { RES_PEOPLE } from '../actions/actionTypes';
+import { RES_PEOPLE, REQ_PEOPLE } from '../actions/actionTypes';
 
 const defaultState = {
   isLoaded: false,
@@ -8,6 +8,8 @@ const defaultState = {
 
 const peopleReducer = (state = defaultState, { type, payload }) => {
   switch (type) {
+    case REQ_PEOPLE:
+      return { ...state, isLoaded: false };
     case RES_PEOPLE:
       return {
         ...state,

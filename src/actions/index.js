@@ -1,6 +1,5 @@
 import {
   REQ_PEOPLE,
-  RES_PEOPLE,
   REQ_PEOPLE_FAIL,
   REQ_FILMs,
   RES_FILMS,
@@ -10,9 +9,9 @@ import {
 } from './actionTypes';
 
 // People Actions
-export const requestPeople = () => ({
+export const requestPeople = {
   type: REQ_PEOPLE
-});
+};
 
 // export const responsePeople = (pageNum, payload) => ({
 //   type: RES_PEOPLE,
@@ -26,9 +25,9 @@ export const requestPeopleFail = error => ({
 });
 
 // Film Actions
-export const requestFilms = () => ({
+export const requestFilms = {
   type: REQ_FILMs
-});
+};
 
 export const responseFilms = filmsPayload => ({
   type: RES_FILMS,

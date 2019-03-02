@@ -3,22 +3,27 @@ import { connect } from 'react-redux';
 
 import TableRow from './TableRow';
 import Pagination from '../Pagination';
-import { requestPeople } from '../../actions';
-
+import { requestPeople, requestFilms } from '../../actions';
+import { matchDictKeysByArray } from '../../helper';
+import PeopleDetails from './PeopleDetails';
 class Table extends Component {
-  // state = {
-  //   listLoaded: false,
-  //   pageNum: 1,
-  //   peopleList: []
-  // };
+  state = { detailPopped: false, filmsOfPeople: [], resultIndex: 0 };
   componentDidMount() {
     this.props.requestPeople();
+    this.props.requestFilms();
   }
+  handleTableRowClick = (filmsUrl, resultIndex) => event => {
+    const { filmsDict } = this.props;
+    const filmsList = matchDictKeysByArray(filmsUrl, filmsDict);
+    this.setState({
+      detailPopped: true,
+      filmsOfPeople: filmsList,
+      resultIndex
+    });
+  };
   render() {
-    const { isLoaded, payload } = this.props;
-    // !Console
-    console.log(payload);
-    // !End of Console
+    const { peopleDataLoaded, filmsDataLoaded, payload } = this.props;
+    const { detailPopped, filmsOfPeople, resultIndex } = this.state;
     return (
       <React.Fragment>
         <table>
@@ -30,13 +35,14 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            {isLoaded ? (
-              payload.results.map(result => (
+            {peopleDataLoaded && filmsDataLoaded ? (
+              payload.results.map((result, index) => (
                 <TableRow
                   key={result.url}
                   name={result.name}
                   height={result.height}
                   mass={result.mass}
+                  onClick={this.handleTableRowClick(result.films, index)}
                 />
               ))
             ) : (
@@ -46,20 +52,31 @@ class Table extends Component {
             )}
           </tbody>
         </table>
-        {isLoaded ? <Pagination totalPage={payload.count} /> : null}
+        {peopleDataLoaded ? <Pagination totalPage={payload.count} /> : null}
+        {detailPopped && (
+          <PeopleDetails
+            name={payload.results[resultIndex].name}
+            height={payload.results[resultIndex].height}
+            birthY={payload.results[resultIndex].birthY}
+            gender={payload.results[resultIndex].gender}
+            films={filmsOfPeople}
+          />
+        )}
       </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  isLoaded: state.people.isLoaded,
-  pageNum: state.people.pageNum,
-  payload: state.people.payload
+  peopleDataLoaded: state.people.isLoaded,
+  filmsDataLoaded: state.films.isLoaded,
+  payload: state.people.payload,
+  filmsDict: state.films.filmsDict
 });
 
 const mapDispatchToProps = dispatch => ({
-  requestPeople: () => dispatch(requestPeople())
+  requestPeople: () => dispatch(requestPeople),
+  requestFilms: () => dispatch(requestFilms)
 });
 
 export default connect(

@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import Table from './components/Table';
-import Pagination from './components/Pagination';
 
 class App extends Component {
   render() {

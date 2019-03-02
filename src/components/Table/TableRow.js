@@ -1,7 +1,7 @@
 import React from 'react';
 
-const TableRow = ({ name, height, mass }) => (
-  <tr>
+const TableRow = ({ films, name, height, mass, onClick }) => (
+  <tr data-films={films} onClick={onClick}>
     <td>{name}</td>
     <td>{height}</td>
     <td>{mass}</td>
