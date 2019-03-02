@@ -14,3 +14,6 @@ export const REQ_FILMS_FAIL = 'request_films_fail';
 
 // const for Saga
 export const PAGE_CHANGE = 'page_change';
+
+// other consts
+export const TOGGLE_POPUP = 'toggle_popup';

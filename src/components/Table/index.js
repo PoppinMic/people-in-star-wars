@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 
 import TableRow from './TableRow';
 import Pagination from '../Pagination';
-import { requestPeople, requestFilms } from '../../actions';
+import { requestPeople, requestFilms, togglePopUp } from '../../actions';
 import { matchDictKeysByArray } from '../../helper';
 import PeopleDetails from './PeopleDetails';
 class Table extends Component {
-  state = { detailPopped: false, filmsOfPeople: [], resultIndex: 0 };
+  state = { filmsOfPeople: [], resultIndex: 0 };
   componentDidMount() {
     this.props.requestPeople();
     this.props.requestFilms();
@@ -15,15 +15,24 @@ class Table extends Component {
   handleTableRowClick = (filmsUrl, resultIndex) => event => {
     const { filmsDict } = this.props;
     const filmsList = matchDictKeysByArray(filmsUrl, filmsDict);
-    this.setState({
-      detailPopped: true,
-      filmsOfPeople: filmsList,
-      resultIndex
-    });
+    this.setState(
+      {
+        filmsOfPeople: filmsList,
+        resultIndex
+      },
+      () => {
+        this.props.togglePopUp();
+      }
+    );
   };
   render() {
-    const { peopleDataLoaded, filmsDataLoaded, payload } = this.props;
-    const { detailPopped, filmsOfPeople, resultIndex } = this.state;
+    const {
+      peopleDataLoaded,
+      filmsDataLoaded,
+      payload,
+      showPopUp
+    } = this.props;
+    const { filmsOfPeople, resultIndex } = this.state;
     return (
       <React.Fragment>
         <table>
@@ -53,11 +62,11 @@ class Table extends Component {
           </tbody>
         </table>
         {peopleDataLoaded ? <Pagination totalPage={payload.count} /> : null}
-        {detailPopped && (
+        {showPopUp && (
           <PeopleDetails
             name={payload.results[resultIndex].name}
             height={payload.results[resultIndex].height}
-            birthY={payload.results[resultIndex].birthY}
+            birthY={payload.results[resultIndex].birth_year}
             gender={payload.results[resultIndex].gender}
             films={filmsOfPeople}
           />
@@ -71,12 +80,14 @@ const mapStateToProps = state => ({
   peopleDataLoaded: state.people.isLoaded,
   filmsDataLoaded: state.films.isLoaded,
   payload: state.people.payload,
-  filmsDict: state.films.filmsDict
+  filmsDict: state.films.filmsDict,
+  showPopUp: state.showPopUp
 });
 
 const mapDispatchToProps = dispatch => ({
   requestPeople: () => dispatch(requestPeople),
-  requestFilms: () => dispatch(requestFilms)
+  requestFilms: () => dispatch(requestFilms),
+  togglePopUp: () => dispatch(togglePopUp)
 });
 
 export default connect(

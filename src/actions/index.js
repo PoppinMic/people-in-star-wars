@@ -5,7 +5,8 @@ import {
   RES_FILMS,
   REQ_FILMS_FAIL,
   NEXT_PAGE,
-  PREV_PAGE
+  PREV_PAGE,
+  TOGGLE_POPUP
 } from './actionTypes';
 
 // People Actions
@@ -46,4 +47,8 @@ export const nextPage = {
 
 export const prevPage = {
   type: PREV_PAGE
+};
+
+export const togglePopUp = {
+  type: TOGGLE_POPUP
 };
