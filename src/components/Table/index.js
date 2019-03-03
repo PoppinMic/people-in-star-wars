@@ -12,6 +12,7 @@ class Table extends Component {
     this.props.requestPeople();
     this.props.requestFilms();
   }
+
   handleTableRowClick = (filmsUrl, resultIndex) => event => {
     const { filmsDict } = this.props;
     const filmsList = matchDictKeysByArray(filmsUrl, filmsDict);
@@ -25,6 +26,7 @@ class Table extends Component {
       }
     );
   };
+
   render() {
     const {
       peopleDataLoaded,

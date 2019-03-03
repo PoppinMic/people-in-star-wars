@@ -10,7 +10,7 @@ import {
   RES_FILMS,
   REQ_FILMS_FAIL
 } from '../actions/actionTypes';
-// import { responsePeople } from '../actions';
+
 
 // !selectors
 export const currentPage = state => state.pageNum;
