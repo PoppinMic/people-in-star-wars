@@ -11,7 +11,6 @@ import {
   REQ_FILMS_FAIL
 } from '../actions/actionTypes';
 
-
 // !selectors
 export const currentPage = state => state.pageNum;
 export const totalPages = state => {
@@ -20,7 +19,7 @@ export const totalPages = state => {
 };
 export const filmsDataLoaded = state => state.films.isLoaded;
 
-function* getPeopleData() {
+export function* getPeopleData() {
   // Listen to fetch people list action
   try {
     const pageNum = yield select(currentPage);
@@ -35,7 +34,7 @@ function* getPeopleData() {
   }
 }
 
-function* getFilmsData() {
+export function* getFilmsData() {
   // Listen to fetch people list action
   try {
     const filmsLoaded = yield select(filmsDataLoaded);
@@ -49,7 +48,7 @@ function* getFilmsData() {
 }
 
 // ! Should be able to merge the function - getPeopleData
-function* handlePageChange() {
+export function* handlePageChange() {
   try {
     const pageNum = yield select(currentPage);
     const maxPageNum = yield select(totalPages);
