@@ -5,7 +5,8 @@ import TableRow from './TableRow';
 import Pagination from '../Pagination';
 import { requestPeople, requestFilms, togglePopUp } from '../../actions';
 import { matchDictKeysByArray } from '../../helper';
-import PeopleDetails from './PeopleDetails';
+import PeopleDetails from '../PeopleDetails';
+import { TableWrapper } from './styles';
 class Table extends Component {
   state = { filmsOfPeople: [], resultIndex: 0 };
   componentDidMount() {
@@ -37,32 +38,35 @@ class Table extends Component {
     const { filmsOfPeople, resultIndex } = this.state;
     return (
       <React.Fragment>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Height</th>
-              <th>Mass</th>
-            </tr>
-          </thead>
-          <tbody>
-            {peopleDataLoaded && filmsDataLoaded ? (
-              payload.results.map((result, index) => (
-                <TableRow
-                  key={result.url}
-                  name={result.name}
-                  height={result.height}
-                  mass={result.mass}
-                  onClick={this.handleTableRowClick(result.films, index)}
-                />
-              ))
-            ) : (
+        <TableWrapper>
+          <table>
+            <thead>
               <tr>
-                <td>Loading...</td>
+                <th>Name</th>
+                <th>Height</th>
+                <th>Mass</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {peopleDataLoaded && filmsDataLoaded ? (
+                payload.results.map((result, index) => (
+                  <TableRow
+                    key={result.url}
+                    name={result.name}
+                    height={result.height}
+                    mass={result.mass}
+                    onClick={this.handleTableRowClick(result.films, index)}
+                  />
+                ))
+              ) : (
+                <tr>
+                  <td>Loading...</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </TableWrapper>
+
         {peopleDataLoaded ? <Pagination totalPage={payload.count} /> : null}
         {showPopUp && (
           <PeopleDetails

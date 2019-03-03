@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
-import './App.css';
-import { Provider } from 'react-redux';
-import store from './store';
 
 import Table from './components/Table';
-
+import { GlobalStyle } from './components/styles/global';
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <div className="App">
-          <header className="App-header">
-            <h1>People In Star Wars</h1>
-          </header>
-          <main>
-            <Table />
-          </main>
-        </div>
-      </Provider>
+      <div className="App">
+        <GlobalStyle />
+        <header className="App-header">
+          <h1>People In Star Wars</h1>
+        </header>
+        <main>
+          <Table />
+        </main>
+      </div>
     );
   }
 }
