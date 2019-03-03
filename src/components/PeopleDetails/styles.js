@@ -31,6 +31,7 @@ export const InnerWrapper = styled.div`
 
 export const CloseButton = styled.button`
   border-radius: 4px;
+  cursor: pointer;
   background-color: ${COLOR_BUTTON};
   border: none;
   padding: 0.5rem 1rem;
