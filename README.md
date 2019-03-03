@@ -1,3 +1,21 @@
+## Thoughts
+
+This app is using SW Api to get people data and render some of the data in a table. When a user click on a table row, a popup will come up and show more detailed data including films name that people appeared.
+
+The people and films title are in separate URLs, so when the Table component mount, I did 2 api calls. (The films one can also be delayed to when a user row is clicked). From observation of the api, we know that people data is paginated but films are not. There are only 7 films so I decided to just do films request once and store the data in store as an object Dictionary for people data to lookup later.
+
+About code/files structure, the code is not perfect yet. There are much more can be done.
+
+1. Code splitting and refactor. That one Saga can be separated to multiple ones. The code should be more elegant when I got more familiar with this redux middleware.
+
+2. About container and components: I didn't really separate them all up because I felt like it's too over engineering. After all, with the official release of react hooks, I think this pattern will be less and less. Check out what Dan Abramov said himself (https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
+
+3. Types. I didn't use propTypes for now since I will refactor the code use Typescript anyway.
+
+4. More unit testing. Especially for sagas.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
