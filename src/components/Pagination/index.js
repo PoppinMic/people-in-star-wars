@@ -3,15 +3,22 @@ import { connect } from 'react-redux';
 
 import { nextPage, prevPage } from '../../actions';
 
-const Pagination = ({ pageNum, totalPage, getNextPage, getPrevPage }) => (
-  <div className="pagination">
-    <button onClick={getPrevPage}>Prev</button>{' '}
-    <span>
-      {pageNum} / {Math.ceil(totalPage / 10)}
-    </span>{' '}
-    <button onClick={getNextPage}>Next</button>
-  </div>
-);
+const Pagination = ({ pageNum, totalPage, getNextPage, getPrevPage }) => {
+  const maxPageNum = Math.ceil(totalPage / 10);
+  return (
+    <div className="pagination">
+      <button disabled={pageNum === 1} onClick={getPrevPage}>
+        Prev
+      </button>{' '}
+      <span>
+        {pageNum} / {maxPageNum}
+      </span>{' '}
+      <button disabled={pageNum === maxPageNum} onClick={getNextPage}>
+        Next
+      </button>
+    </div>
+  );
+};
 
 const mapStateToProps = ({ pageNum }) => ({
   pageNum
