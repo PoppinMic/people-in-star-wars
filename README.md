@@ -1,3 +1,5 @@
+# Refactoring to use React Hook
+
 ## Thoughts
 
 This app is using SW Api to get people data and render some of the data in a table. When a user click on a table row, a popup will come up and show more detailed data including films name that people appeared.
