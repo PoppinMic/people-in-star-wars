@@ -25,10 +25,10 @@ const Table = ({
     requestFilms();
   }, [requestFilms, requestPeople]);
 
-  const handleTableRowClick = (filmsUrl, resultIndex) => async event => {
+  const handleTableRowClick = (filmsUrl, resultIndex) => event => {
     const filmsList = matchDictKeysByArray(filmsUrl, filmsDict);
     setFilmsOfPeople(filmsList);
-    await setResultIndex(resultIndex);
+    setResultIndex(resultIndex);
     togglePopUp();
   };
 
@@ -91,7 +91,4 @@ const mapDispatchToProps = dispatch => ({
   togglePopUp: () => dispatch(togglePopUp)
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
